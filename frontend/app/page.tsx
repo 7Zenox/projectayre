@@ -9,27 +9,31 @@ export default function Page() {
   const [file, setFile] = useState<File | null>(null);
   const [question, setQuestion] = useState("");
   const [response, setResponse] = useState("");
+  const [loading, setLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // When the file changes, update the preview (but do not auto-submit)
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
       setFile(selectedFile);
       const previewUrl = URL.createObjectURL(selectedFile);
       setImagePreview(previewUrl);
-      handleSubmit(selectedFile);
     }
   };
 
-  const handleSubmit = async (selectedFile: File) => {
-    if (!selectedFile || !question) return;
-
+  // Updated handleSubmit accepts a potentially null file.
+  const handleSubmit = async (selectedFile: File | null) => {
     const formData = new FormData();
-    formData.append("image", selectedFile);
+    if (selectedFile) {
+      formData.append("image", selectedFile);
+    }
+    // Append the question even if it's empty
     formData.append("query", question);
 
+    setLoading(true);
     try {
       const res = await axios.post("/api/gemini", formData);
       if (res.status === 200) {
@@ -37,15 +41,19 @@ export default function Page() {
       }
     } catch (error) {
       console.error("Error:", error);
+      setResponse("Internal systems malfunctioning. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
+  // Trigger file selection reset
   const handleUploadClick = () => {
     setFile(null);
     setImagePreview(null);
     setResponse("");
+    setQuestion(""); // Optionally clear the question too
 
-    // Clear the file input and trigger a click
     setTimeout(() => {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
@@ -158,8 +166,9 @@ export default function Page() {
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
               />
+              {/* Always call handleSubmit even if file or question might be missing */}
               <button
-                onClick={() => file && handleSubmit(file)}
+                onClick={() => handleSubmit(file)}
                 className="bg-[#FF0054] text-white px-4 py-2 rounded-lg hover:bg-[#D80048] transition-colors w-full"
               >
                 Ask AYRE
@@ -175,8 +184,18 @@ export default function Page() {
                 <span className="text-gray-400">AYRE&apos;s response...</span>
               </div>
               <div className="min-h-[300px] md:min-h-[200px] text-sm">
-                {response ||
-                  "How would I know? Use your own eyes silly! (sigh... just type a question)"}
+                {loading ? (
+                  // Animated pulsing skeleton effect
+                  <div className="animate-pulse">
+                    <div className="h-4 bg-gray-700 rounded w-3/4 mb-2"></div>
+                    <div className="h-4 bg-gray-700 rounded w-full mb-2"></div>
+                    <div className="h-4 bg-gray-700 rounded w-5/6 mb-2"></div>
+                    <div className="h-4 bg-gray-700 rounded w-2/3 mb-2"></div>
+                  </div>
+                ) : (
+                  response ||
+                  "How would I know? Use your own eyes silly! (sigh... just type a question)"
+                )}
               </div>
             </div>
           </div>
@@ -265,7 +284,6 @@ export default function Page() {
 
       {/* Footer */}
       <footer className="absolute bottom-6 left-6 right-6 flex justify-between text-sm text-gray-400">
-        {/* Mobile GitHub Icon */}
         <div className="md:hidden">
           <a
             href="https://github.com/projectayre/ayre"

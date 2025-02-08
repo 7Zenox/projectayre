@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
@@ -9,10 +8,26 @@ export async function POST(req: NextRequest) {
     const imageFile = formData.get('image');
     const query = formData.get('query');
 
-    if (!imageFile || !query) {
+    // Debug log to see what was received
+    console.log("Received formData:", { imageFile, query });
+
+    // Input validations (returning a prediction message without sending a request)
+    if (!imageFile && !query) {
       return NextResponse.json(
-        { error: 'Image and query are required' },
-        { status: 400 }
+        { prediction: "You think you're a funny guy?" },
+        { status: 200 }
+      );
+    }
+    if (!imageFile) {
+      return NextResponse.json(
+        { prediction: "Hey, give me something to look at?" },
+        { status: 200 }
+      );
+    }
+    if (!query) {
+      return NextResponse.json(
+        { prediction: "What would you like me to answer?" },
+        { status: 200 }
       );
     }
 
@@ -21,19 +36,18 @@ export async function POST(req: NextRequest) {
 
     // Retrieve the API key from environment variables
     const apiKey = process.env.GEMINI_API_KEY;
-
     if (!apiKey) {
       return NextResponse.json(
-        { error: 'API key not found' },
-        { status: 500 }
+        { prediction: "Internal systems malfunctioning. Please try later..." },
+        { status: 200 }
       );
     }
 
     // Wrap the user's query in a custom prompt for prompt engineering.
     const wrappedPrompt = `You are an expert in image analysis. 
-                          Given the image provided, please answer the following question concisely: "${queryStr}"
-                          Also add a line about the sentiment of the image. 
-                          Do not answer anything outside the scope of the question or the image.`;
+Given the image provided, please answer the following question concisely: "${queryStr}"
+Also add a line about the sentiment of the image. 
+Do not answer anything outside the scope of the question or the image.`;
 
     // Convert the uploaded image file to a base64 string
     let imageBase64 = '';
@@ -42,8 +56,8 @@ export async function POST(req: NextRequest) {
       imageBase64 = Buffer.from(arrayBuffer).toString('base64');
     } else {
       return NextResponse.json(
-        { error: 'Invalid image file' },
-        { status: 400 }
+        { prediction: "Invalid image file" },
+        { status: 200 }
       );
     }
 
@@ -62,11 +76,10 @@ export async function POST(req: NextRequest) {
       wrappedPrompt,
     ]);
 
-    // Extract the text from the model response
+    // Extract and possibly clean the text from the model response
     let predictionText = result.response.text();
     console.log("Raw model output:", predictionText);
 
-    // If the output is encapsulated in a markdown code block, clean it.
     if (predictionText.startsWith("```json")) {
       predictionText = predictionText
         .replace(/^```json\s*/, "")
@@ -76,7 +89,10 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ prediction: predictionText }, { status: 200 });
   } catch (error) {
-    console.error('Server error:', error);
-    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
+    console.error("Server error:", error);
+    return NextResponse.json(
+      { prediction: "Internal systems malfunctioning. Please try later..." },
+      { status: 200 }
+    );
   }
 }
