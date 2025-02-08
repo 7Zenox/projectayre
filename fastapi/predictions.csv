@@ -1,0 +1,44 @@
+how many cats in the image?,1,1.1919643878936768,"SequenceClassifierOutput(loss=None, logits=tensor([[-16.7432, -14.8853,  -8.5122,  ..., -16.7769, -16.3682, -18.1277]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+how many cats in the image?,1,0.9639673233032227,"SequenceClassifierOutput(loss=None, logits=tensor([[-16.7432, -14.8853,  -8.5122,  ..., -16.7769, -16.3682, -18.1277]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+what is life?,dog,3.032161235809326,"SequenceClassifierOutput(loss=None, logits=tensor([[-11.4291, -11.0374,  -8.9209,  ..., -12.7583, -12.7122, -13.0103]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+amee,yes,0.22313427925109863,"SequenceClassifierOutput(loss=None, logits=tensor([[-10.7153,  -8.4263,  -6.9719,  ..., -12.3818, -11.9721, -13.6291]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+what is he eating?,donut,0.1117863655090332,"SequenceClassifierOutput(loss=None, logits=tensor([[-12.0650, -11.0858,  -5.8393,  ..., -16.1161, -13.7779, -17.8961]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+amee,yes,0.0959773063659668,"SequenceClassifierOutput(loss=None, logits=tensor([[-10.7153,  -8.4263,  -6.9719,  ..., -12.3818, -11.9721, -13.6291]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+how many glasses is she holding?,1,1.4260897636413574,"SequenceClassifierOutput(loss=None, logits=tensor([[-16.1772, -14.2355,  -8.9522,  ..., -16.1725, -16.4987, -18.3408]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+asd,no,0.1939539909362793,"SequenceClassifierOutput(loss=None, logits=tensor([[-6.5257, -7.0168, -6.6335,  ..., -6.7639, -7.6178, -9.0281]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+what?,kite,0.3715989589691162,"SequenceClassifierOutput(loss=None, logits=tensor([[ -6.1175,  -7.6407,  -6.6029,  ...,  -9.9270, -10.1966, -11.7717]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+What is in the image?,kite,0.09275555610656738,"SequenceClassifierOutput(loss=None, logits=tensor([[ -7.3216,  -8.5408,  -7.3191,  ..., -10.4673, -11.0929, -12.4258]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+Poplio,yes,0.08848953247070312,"SequenceClassifierOutput(loss=None, logits=tensor([[ -9.8654,  -9.4979,  -6.1022,  ...,  -8.9767,  -9.7859, -12.5441]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+Hi,no,0.08006620407104492,"SequenceClassifierOutput(loss=None, logits=tensor([[ -9.5308, -10.7704,  -7.3627,  ..., -11.0639, -11.9205, -11.2168]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+Hi,no,0.08454775810241699,"SequenceClassifierOutput(loss=None, logits=tensor([[ -9.5308, -10.7704,  -7.3627,  ..., -11.0639, -11.9206, -11.2168]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+how many cats in this image?,1,2.711454391479492,"SequenceClassifierOutput(loss=None, logits=tensor([[-16.9624, -15.0448,  -8.4299,  ..., -16.8098, -16.4074, -18.2240]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+how many people are in this image?,2,7.460793733596802,"SequenceClassifierOutput(loss=None, logits=tensor([[-15.5046, -14.8697,  -9.6078,  ..., -15.6133, -15.7328, -17.8743]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+How many eyes?,2,1.0566167831420898,"SequenceClassifierOutput(loss=None, logits=tensor([[-15.5644, -13.4365,  -8.9964,  ..., -17.3894, -17.3984, -17.0622]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+How many eyes?,2,0.22426939010620117,"SequenceClassifierOutput(loss=None, logits=tensor([[-15.5644, -13.4365,  -8.9964,  ..., -17.3894, -17.3984, -17.0622]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+How many eyes?,2,0.21224474906921387,"SequenceClassifierOutput(loss=None, logits=tensor([[-15.5644, -13.4365,  -8.9964,  ..., -17.3894, -17.3984, -17.0622]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+How many nose,2,0.8977921009063721,"SequenceClassifierOutput(loss=None, logits=tensor([[-15.6709, -12.0563,  -9.7177,  ..., -16.6710, -15.8685, -18.2091]],
+       device='cuda:0', grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+How many lines in the image?,20,289.1903121471405,"SequenceClassifierOutput(loss=None, logits=tensor([[-14.4693, -13.6340, -10.1448,  ..., -17.6221, -17.1152, -18.3478]],
+       grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+How many lines in the image?,20,365.14268493652344,"SequenceClassifierOutput(loss=None, logits=tensor([[-14.4693, -13.6340, -10.1448,  ..., -17.6221, -17.1152, -18.3478]],
+       grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
+How many white objects?,2,375.5732321739197,"SequenceClassifierOutput(loss=None, logits=tensor([[-13.9402, -12.8159, -10.2507,  ..., -15.3706, -14.8659, -16.7315]],
+       grad_fn=<AddmmBackward0>), hidden_states=None, attentions=None)"
